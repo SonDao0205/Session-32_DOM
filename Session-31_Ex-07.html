@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Zoom</title>
+    <style>
+        .image {
+            display: flex;
+            flex-direction: row;
+            gap: 30px;
+            justify-content: center;
+            margin-top: 50px;
+        }
+
+        img {
+            width: 20%;
+            cursor: pointer;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            visibility: hidden;
+            opacity: 0;
+        }
+
+        .overlay img {
+            width: 60%;
+            max-height: 80%;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+        }
+
+        .overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="image">
+            <img src="https://wallpaperaccess.com/full/1863842.jpg" alt="Image 1" class="photo">
+            <img src="https://wallpaperaccess.com/full/4084939.jpg" alt="Image 2" class="photo">
+            <img src="https://www.teahub.io/photos/full/305-3056490_liverpool-fc.jpg" alt="Image 3" class="photo">
+        </div>
+    </div>
+    <div class="overlay" id="overlay">
+        <img id="overlayImg" src="" alt="Zoomed Image">
+    </div>
+
+    <script>
+        const images = document.querySelectorAll(".photo");
+        const overlay = document.getElementById("overlay");
+        const overlayImg = document.getElementById("overlayImg");
+        const closeBtn = document.getElementById("closeBtn");
+        // img lấy chung tên class nên là nodeList và duyệt từng phần tử ảnh để gắn từng event click cho từng ảnh
+        images.forEach(img => {
+            img.addEventListener("click", function() {
+                overlayImg.src = img.src;
+                overlay.classList.add("active");
+            });
+        });
+
+        overlay.addEventListener("click", function(){
+            overlay.classList.remove("active");
+        });
+    </script>
+</body>
+</html>

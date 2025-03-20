@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #text {
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <p id="text">Chữ sẽ thay đổi kích thước khi bấm nút</p>
+    <button id="increase" style="padding: 15px 20px; background-color: green; color: white; border-radius: 8px; border: transparent; cursor: pointer;">+</button>
+    <button id="decrease" style="padding: 15px 20px; background-color: red; color: white; border-radius: 8px; border: transparent; cursor: pointer;">-</button>
+
+    <script>
+        const textElement = document.querySelector("#text");
+        const increaseElement = document.querySelector("#increase");
+        const decreaseElement = document.querySelector("#decrease");
+        let fontSize = 16
+        increaseElement.addEventListener("click", function() {
+            fontSize += 2;
+            textElement.style.fontSize = fontSize + "px";
+        });
+
+        decreaseElement.addEventListener("click", function() {
+            fontSize -= 2;
+            textElement.style.fontSize = fontSize + "px";
+        });
+    </script>
+</body>
+</html>

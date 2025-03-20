@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="form">
+        <input type="text" name="subject" id="subjectInput" placeholder="Nhập tên môn học">
+        <button type="submit" id="btnAdd">Thêm môn học</button>
+        <ol id="olList">
+
+        </ol>
+    </form>
+    <script>
+        const formEle = document.querySelector("#form");
+        const inputSubject = document.querySelector("#subjectInput");
+        const btnAddEle = document.querySelector("#btnAdd");
+        const olListEle = document.querySelector("#olList"); 
+        const subjects = [];
+
+        function renderSubject() {
+            // Xóa danh sách cũ trước khi render mới
+            olListEle.textContent = "";
+            subjects.forEach((subject) => {
+                // thêm thẻ li
+                const liElement = document.createElement("li");
+                // add value vào thẻ li
+                liElement.textContent = subject.name;
+                // add vào list
+                olListEle.appendChild(liElement);
+            });
+        }
+
+        function addSubject() {
+            const inputValue = inputSubject.value.trim();
+            if (inputValue) {
+                const newSubject = {
+                    id: Math.ceil(Math.random() * 100),
+                    name: inputValue,
+                    status: false,
+                };
+                subjects.push(newSubject);
+                renderSubject();
+                // Reset ô nhập
+                inputSubject.value = "";
+            } else {
+                alert("Tên môn học không được để trống!");
+            }
+        }
+
+        formEle.addEventListener("submit", function(event) {
+            event.preventDefault();
+            addSubject();
+        });
+    </script>
+</body>
+</html>

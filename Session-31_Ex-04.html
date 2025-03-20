@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" method="get" id="form">
+        <input type="text" name="email" id="emailInput" placeholder="Nhap email">
+        <br>
+        <p style="color: green; display: none;" id="valid">Email hop le!</p>
+        <p style="color: red; display: none;" id="invalid">Email khong hop le!</p>
+        <button type="submit">Check</button>
+    </form>
+    <script>
+        const formElement = document.querySelector("#form");
+        const validElement = document.querySelector("#valid");
+        const invalidElement = document.querySelector("#invalid");
+        const validateEmail = (email) => {
+            const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|vn)$/;
+            return emailRegex.test(email);
+        }
+
+        formElement.addEventListener("submit", function(event) {
+            event.preventDefault();
+            const emailValue = document.querySelector("#emailInput").value.trim();
+            if (validateEmail(emailValue)) {
+                validElement.style.display = "block";
+                invalidElement.style.display = "none"
+            } else {
+                invalidElement.style.display = "block";
+                validElement.style.display = "none"
+            }
+        });
+    </script>
+</body>
+</html>
